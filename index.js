@@ -16,13 +16,7 @@ model.forEach(block => {
     let html = ''
 
     if (block.type === 'title') {
-        html = `
-            <div class="row">
-            <div class="col-sm">
-                <h1>${block.value}</h1>
-            </div>
-            </div> 
-        `
+        html = 
     } else if (block.type === 'text') {
         html = `
             <div class="row">
@@ -31,5 +25,24 @@ model.forEach(block => {
             </div>
             </div>
         `
+    } else if (block.type === 'colums') {
+
     }
+
+    $site.insertAdjacentHTML('beforeend', html)
+
+
+
+
 })
+
+function title(block) {
+    return `
+            <div class="row">
+            <div class="col-sm">
+            <h1>${block.value}</h1>
+            </div>
+            </div> 
+            `
+
+}
