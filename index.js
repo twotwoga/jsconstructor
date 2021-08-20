@@ -1,11 +1,11 @@
 const model = [
     { type: 'title', value: 'Hello World from JS' },
-    { type: 'title', value: 'here wo go with some text' },
-    {
-        type: 'colums', value: [
+    { type: 'text', value: 'here wo go with some text' },
+    {type: 'colums', value: [
             '11111111111',
             '22222222222',
-            '33333333333'
+            '33333333333',
+              
         ]
     }
 ]
@@ -16,23 +16,14 @@ model.forEach(block => {
     let html = ''
 
     if (block.type === 'title') {
-        html = 
+        html = title(block)
     } else if (block.type === 'text') {
-        html = `
-            <div class="row">
-            <div class="col-sm">
-                <p>${block.value}</p>
-            </div>
-            </div>
-        `
+        html = text(block)
     } else if (block.type === 'colums') {
-
+        html = colums(block)
     }
 
     $site.insertAdjacentHTML('beforeend', html)
-
-
-
 
 })
 
@@ -43,6 +34,28 @@ function title(block) {
             <h1>${block.value}</h1>
             </div>
             </div> 
+            `
+
+}
+
+function text(block) {
+    return `
+            <div class="row">
+            <div class="col-sm">
+            <p>${block.value}</p>
+            </div>
+            </div>
+            `
+}
+
+function colums(block) {
+
+    const html = block.value.map(item => `<div class="col-sm">${item}</div>`) 
+
+    return `
+            <div class="row">
+                ${html.join('')}
+            </div>
             `
 
 }
